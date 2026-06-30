@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pink Studio — Makeup Salon &amp; Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --rose:#b5345f;
+    --rose-deep:#7d1f40;
+    --blush:#f6e2e8;
+    --blush-soft:#fbf2f4;
+    --paper:#faf7f3;
+    --ink:#241218;
+    --ink-soft:#6e5158;
+    --gold:#a87f3f;
+    --line:#e6d3d8;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    font-size:16px;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .serif{font-family:'Fraunces',serif;}
+
+  .wrap{max-width:1240px;margin:0 auto;padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px);}
+
+  /* ───────── NAV ───────── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px clamp(20px,5vw,64px);
+    mix-blend-mode:normal;
+  }
+  nav.scrolled{
+    background:rgba(250,247,243,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    padding:16px clamp(20px,5vw,64px);
+  }
+  .nav-logo{font-family:'Fraunces',serif;font-weight:500;font-size:1.15rem;letter-spacing:.02em;}
+  .nav-logo span{color:var(--rose);font-style:italic;}
+  .nav-links{display:flex;gap:40px;font-size:.82rem;letter-spacing:.02em;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--rose);}
+  .nav-cta{
+    font-size:.82rem;border-bottom:1px solid var(--ink);padding-bottom:2px;
+  }
+  .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .nav-burger span{width:22px;height:1.5px;background:var(--ink);}
+
+  /* ───────── HERO ───────── */
+  .hero{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:stretch;
+  }
+  .hero-left{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:140px clamp(20px,5vw,72px) 80px;
+  }
+  .hero-kicker{
+    font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--rose);margin-bottom:28px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero-kicker::before{content:'';width:24px;height:1px;background:var(--rose);}
+  .hero-left h1{
+    font-size:clamp(3rem,5.6vw,4.6rem);
+    font-weight:500;
+    line-height:0.98;
+    letter-spacing:-.01em;
+    margin-bottom:30px;
+    max-width:11ch;
+  }
+  .hero-left h1 .it{font-style:italic;font-weight:400;color:var(--rose-deep);}
+  .hero-left p.lede{
+    font-size:1.05rem;color:var(--ink-soft);max-width:420px;
+    margin-bottom:42px;line-height:1.7;
+  }
+  .hero-actions{display:flex;gap:28px;align-items:center;}
+  .btn-fill{
+    background:var(--ink);color:#fff;
+    padding:16px 32px;
+    font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+    transition:background .2s;
+  }
+  .btn-fill:hover{background:var(--rose-deep);}
+  .btn-text{font-size:.84rem;border-bottom:1px solid var(--ink);padding-bottom:3px;}
+
+  .hero-meta{
+    display:flex;gap:48px;margin-top:64px;padding-top:32px;
+    border-top:1px solid var(--line);max-width:460px;
+  }
+  .hm-num{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--rose-deep);}
+  .hm-lbl{font-size:.72rem;letter-spacing:.05em;color:var(--ink-soft);margin-top:4px;}
+
+  .hero-right{
+    position:relative;
+    background:var(--blush);
+    overflow:hidden;
+  }
+  .hero-right img{
+    width:100%;height:100%;object-fit:cover;
+    filter:saturate(.92) contrast(1.02);
+  }
+  .hero-tag{
+    position:absolute;left:32px;bottom:32px;
+    background:var(--paper);
+    padding:18px 24px;
+    max-width:240px;
+    border-left:2px solid var(--rose);
+  }
+  .hero-tag p{font-size:.82rem;color:var(--ink-soft);line-height:1.5;}
+  .hero-tag .serif{font-style:italic;color:var(--rose-deep);font-size:1rem;display:block;margin-bottom:4px;}
+
+  /* ───────── MARQUEE STRIP ───────── */
+  .strip{
+    background:var(--ink);color:var(--blush-soft);
+    padding:16px 0;overflow:hidden;white-space:nowrap;
+  }
+  .strip-track{display:inline-flex;gap:48px;animation:scroll 28s linear infinite;}
+  .strip-track span{font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;opacity:.85;}
+  .strip-track span::after{content:'✦';font-style:normal;margin-left:48px;color:var(--gold);}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ───────── SECTION SHARED ───────── */
+  .section{padding:120px clamp(20px,5vw,72px);}
+  .sec-top{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:32px;flex-wrap:wrap;margin-bottom:64px;
+    padding-bottom:28px;border-bottom:1px solid var(--line);
+  }
+  .sec-kicker{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:14px;}
+  .sec-top h2{font-size:clamp(2.2rem,4.2vw,3.1rem);font-weight:500;letter-spacing:-.01em;}
+  .sec-top h2 .it{font-style:italic;color:var(--rose-deep);}
+  .sec-top p{max-width:340px;color:var(--ink-soft);font-size:.94rem;line-height:1.65;}
+
+  /* ───────── SERVICES — editorial list ───────── */
+  .service-list{display:flex;flex-direction:column;}
+  .service-row{
+    display:grid;
+    grid-template-columns:60px 1fr auto auto;
+    align-items:center;gap:28px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    transition:padding-left .25s;
+  }
+  .service-row:hover{padding-left:14px;}
+  .service-row:hover .sr-name{color:var(--rose-deep);}
+  .sr-idx{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:1.1rem;}
+  .sr-name{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:500;transition:color .2s;}
+  .sr-desc{font-size:.85rem;color:var(--ink-soft);margin-top:4px;max-width:380px;}
+  .sr-price{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--ink);white-space:nowrap;}
+  .sr-arrow{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.9rem;transition:background .2s,border-color .2s;
+  }
+  .service-row:hover .sr-arrow{background:var(--rose);border-color:var(--rose);color:#fff;}
+
+  @media(max-width:680px){
+    .service-row{grid-template-columns:30px 1fr;row-gap:10px;}
+    .sr-price,.sr-arrow{display:none;}
+  }
+
+  /* ───────── ACADEMY ───────── */
+  .academy{
+    background:var(--ink);color:var(--blush-soft);
+    border-radius:2px;
+  }
+  .academy .sec-top{border-bottom-color:rgba(255,255,255,.15);}
+  .academy .sec-kicker{color:var(--gold);}
+  .academy .sec-top p{color:rgba(255,255,255,.6);}
+
+  .academy-body{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .academy-copy p{color:rgba(255,255,255,.7);line-height:1.8;font-size:1rem;margin-bottom:36px;max-width:440px;}
+  .academy-stats{display:flex;gap:44px;}
+  .as-num{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold);font-style:italic;}
+  .as-lbl{font-size:.72rem;letter-spacing:.05em;color:rgba(255,255,255,.55);margin-top:6px;}
+
+  .course-list{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.12);}
+  .course{
+    background:var(--ink);padding:26px 0;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .course h4{font-family:'Fraunces',serif;font-weight:500;font-size:1.2rem;margin-bottom:6px;}
+  .course span{font-size:.76rem;color:rgba(255,255,255,.55);letter-spacing:.03em;}
+  .course .cprice{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:1.3rem;}
+
+  @media(max-width:780px){ .academy-body{grid-template-columns:1fr;gap:40px;} }
+
+  /* ───────── GALLERY ───────── */
+  .gallery{background:var(--blush-soft);}
+  .gal-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:120px;gap:4px;
+  }
+  .gal-grid img{width:100%;height:100%;object-fit:cover;filter:saturate(.95);}
+  .ga{grid-column:span 3;grid-row:span 3;}
+  .gb{grid-column:span 3;grid-row:span 2;}
+  .gc{grid-column:span 2;grid-row:span 2;}
+  .gd{grid-column:span 1;grid-row:span 2;}
+  .ge{grid-column:span 6;grid-row:span 1;display:flex;align-items:center;justify-content:center;background:var(--rose);}
+  .ge p{font-family:'Fraunces',serif;font-style:italic;color:#fff;font-size:1.3rem;text-align:center;padding:0 20px;}
+
+  @media(max-width:680px){
+    .gal-grid{grid-template-columns:repeat(2,1fr);}
+    .ga,.gb,.gc,.gd,.ge{grid-column:span 1;grid-row:span 2;}
+  }
+
+  /* ───────── CONTACT ───────── */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+  .contact-form{padding:56px;}
+  .contact-form h3{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:500;margin-bottom:10px;}
+  .contact-form > p{color:var(--ink-soft);font-size:.92rem;margin-bottom:32px;}
+  .cf-row{margin-bottom:22px;}
+  .cf-row label{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+  .cf-row input,.cf-row select{
+    width:100%;border:none;border-bottom:1px solid var(--line);
+    padding:10px 0;font-family:'Inter',sans-serif;font-size:.96rem;background:transparent;
+    outline:none;
+  }
+  .cf-row input:focus,.cf-row select:focus{border-bottom-color:var(--rose);}
+  .cf-grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+
+  .contact-side{
+    background:var(--ink);color:#fff;
+    padding:56px;display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .cs-block h5{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .cs-block p{font-size:.98rem;color:rgba(255,255,255,.85);margin-bottom:32px;line-height:1.6;}
+  .cs-quote{font-family:'Fraunces',serif;font-style:italic;font-size:1.3rem;line-height:1.45;color:rgba(255,255,255,.92);}
+
+  @media(max-width:780px){
+    .contact-grid{grid-template-columns:1fr;}
+    .cf-grid2{grid-template-columns:1fr;}
+  }
+
+  /* ───────── FOOTER ───────── */
+  footer{
+    padding:56px clamp(20px,5vw,72px) 36px;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:20px;
+    border-top:1px solid var(--line);
+  }
+  footer .nav-logo{font-size:1.1rem;}
+  .foot-links{display:flex;gap:28px;font-size:.78rem;color:var(--ink-soft);}
+  .foot-copy{font-size:.76rem;color:var(--ink-soft);}
+
+  @media(max-width:780px){
+    .hero{grid-template-columns:1fr;}
+    .hero-right{min-height:380px;order:-1;}
+    .hero-left{padding-top:100px;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">PINK<span>.</span> STUDIO</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#academy">Academy</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Book a Visit</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">Makeup Salon &amp; Academy — Agra</p>
+    <h1>Beauty, <span class="it">studied</span><br>and styled.</h1>
+    <p class="lede">A salon chair for every occasion, and a classroom for everyone who wants to learn the craft behind it. Pink Studio does both, properly.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-fill">Book an Appointment</a>
+      <a href="#academy" class="btn-text">View Academy →</a>
+    </div>
+    <div class="hero-meta">
+      <div><div class="hm-num">500+</div><div class="hm-lbl">Clients Styled</div></div>
+      <div><div class="hm-num">120+</div><div class="hm-lbl">Students Trained</div></div>
+      <div><div class="hm-num">6 yrs</div><div class="hm-lbl">In Agra</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=900&q=80" alt="Pink Studio interior">
+    <div class="hero-tag">
+      <span class="serif">By appointment</span>
+      <p>Walk-ins welcome on weekdays — bridal slots book out 3 weeks ahead.</p>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>Bridal Makeup</span><span>Party Glam</span><span>Hair Styling</span><span>Skin &amp; Facial</span><span>Nail Art</span><span>Makeup Academy</span>
+    <span>Bridal Makeup</span><span>Party Glam</span><span>Hair Styling</span><span>Skin &amp; Facial</span><span>Nail Art</span><span>Makeup Academy</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-top">
+      <div>
+        <p class="sec-kicker">What We Do</p>
+        <h2>Services &amp; <span class="it">pricing</span></h2>
+      </div>
+      <p>Six services, one standard — unhurried, detail-first work, every single time.</p>
+    </div>
+
+    <div class="service-list">
+      <a class="service-row" href="#contact">
+        <span class="sr-idx">01</span>
+        <div><div class="sr-name">Bridal Makeup</div><div class="sr-desc">Full HD bridal look with trial session and a touch-up kit for the day.</div></div>
+        <span class="sr-price">From ₹8,000</span>
+        <span class="sr-arrow">↗</span>
+      </a>
+      <a class="service-row" href="#contact">
+        <span class="sr-idx">02</span>
+        <div><div class="sr-name">Party Makeup</div><div class="sr-desc">Glam, dewy or bold — built around your outfit and the night ahead.</div></div>
+        <span class="sr-price">From ₹2,500</span>
+        <span class="sr-arrow">↗</span>
+      </a>
+      <a class="service-row" href="#contact">
+        <span class="sr-idx">03</span>
+        <div><div class="sr-name">Kids' Makeover</div><div class="sr-desc">Gentle, skin-safe products for birthdays, fancy dress days and shoots.</div></div>
+        <span class="sr-price">From ₹999</span>
+        <span class="sr-arrow">↗</span>
+      </a>
+      <a class="service-row" href="#contact">
+        <span class="sr-idx">04</span>
+        <div><div class="sr-name">Hair Styling</div><div class="sr-desc">Blow-dry, curls, updos and braids — styled to hold all evening.</div></div>
+        <span class="sr-price">From ₹1,200</span>
+        <span class="sr-arrow">↗</span>
+      </a>
+      <a class="service-row" href="#contact">
+        <span class="sr-idx">05</span>
+        <div><div class="sr-name">Skin &amp; Facial</div><div class="sr-desc">Clean-ups, facials and de-tan treatments for a camera-ready base.</div></div>
+        <span class="sr-price">From ₹1,500</span>
+        <span class="sr-arrow">↗</span>
+      </a>
+      <a class="service-row" href="#contact">
+        <span class="sr-idx">06</span>
+        <div><div class="sr-name">Nail Art</div><div class="sr-desc">Manicures and gel finishes, hand-painted to match your look.</div></div>
+        <span class="sr-price">From ₹700</span>
+        <span class="sr-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMY -->
+<section class="section" id="academy">
+  <div class="wrap academy" style="padding:80px clamp(24px,4vw,64px);">
+    <div class="sec-top">
+      <div>
+        <p class="sec-kicker">Learn With Us</p>
+        <h2>The <span class="it">Academy</span></h2>
+      </div>
+      <p>Beginners to working artists — certified, hands-on, on real clients.</p>
+    </div>
+
+    <div class="academy-body">
+      <div class="academy-copy">
+        <p>From your first brush stroke to building a client base of your own. Our academy trains in small batches, with practice on real clients and a certificate that actually means something locally.</p>
+        <div class="academy-stats">
+          <div><div class="as-num">120+</div><div class="as-lbl">Students Trained</div></div>
+          <div><div class="as-num">3</div><div class="as-lbl">Course Levels</div></div>
+          <div><div class="as-num">100%</div><div class="as-lbl">Certified</div></div>
+        </div>
+      </div>
+
+      <div class="course-list">
+        <div class="course">
+          <div><h4>Basic Makeup Course</h4><span>4 weeks · Beginners</span></div>
+          <div class="cprice">₹6,000</div>
+        </div>
+        <div class="course">
+          <div><h4>Advanced Bridal Course</h4><span>8 weeks · Intermediate</span></div>
+          <div class="cprice">₹15,000</div>
+        </div>
+        <div class="course">
+          <div><h4>Professional Diploma</h4><span>3 months · Certification</span></div>
+          <div class="cprice">₹28,000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery" id="gallery" style="padding-top:100px;padding-bottom:0;">
+  <div class="wrap" style="margin-bottom:50px;">
+    <div class="sec-top" style="margin-bottom:0;">
+      <div>
+        <p class="sec-kicker">Our Space</p>
+        <h2>Inside the <span class="it">studio</span></h2>
+      </div>
+    </div>
+  </div>
+  <div class="gal-grid">
+    <img class="ga" src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=800&q=80" alt="Studio">
+    <img class="gb" src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80" alt="Styling chairs">
+    <img class="gc" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Makeup tools">
+    <img class="gd" src="https://images.unsplash.com/photo-1487412912498-0447579145d6?w=400&q=80" alt="Brushes">
+    <div class="ge"><p>"Every chair, every mirror, every product — chosen on purpose."</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="sec-top">
+      <div>
+        <p class="sec-kicker">Visit Us</p>
+        <h2>Book your <span class="it">appointment</span></h2>
+      </div>
+      <p>Walk in, call ahead, or fill the form — we'll confirm your slot within the day.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-form">
+        <h3>Request a slot</h3>
+        <p>Tell us what you're after and when, we'll do the rest.</p>
+        <div class="cf-row"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+        <div class="cf-grid2">
+          <div class="cf-row"><label>Phone</label><input type="text" placeholder="+91"></div>
+          <div class="cf-row"><label>Service</label><input type="text" placeholder="e.g. Bridal Makeup"></div>
+        </div>
+        <div class="cf-row"><label>Preferred Date</label><input type="date"></div>
+        <a href="#" class="btn-fill" style="display:inline-block;margin-top:12px;">Submit Request</a>
+      </div>
+      <div class="contact-side">
+        <div class="cs-block">
+          <h5>Location</h5>
+          <p>Shop 12, Sadar Bazaar, Agra, Uttar Pradesh</p>
+          <h5>Phone</h5>
+          <p>+91 98XXX XXXXX</p>
+          <h5>Hours</h5>
+          <p>Tuesday – Sunday, 10:00 AM – 8:00 PM</p>
+        </div>
+        <p class="cs-quote">"They didn't just do my makeup — they made me feel like I knew what I was doing too."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="nav-logo">PINK<span style="color:var(--rose);">.</span> STUDIO</div>
+  <div class="foot-links">
+    <a href="#services">Services</a>
+    <a href="#academy">Academy</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="foot-copy">© 2026 Pink Studio, Agra</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+
+</body>
+</html>
