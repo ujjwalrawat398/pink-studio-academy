@@ -19,6 +19,338 @@
     --gold:#a87f3f;
     --line:#e6d3d8;
   }
+ /* ==============================
+   PREMIUM LUXURY ENHANCEMENT
+================================ */
+
+:root{
+  --glass:rgba(255,255,255,.45);
+}
+
+/* smooth feel */
+body{
+ overflow-x:hidden;
+}
+
+/* floating beauty objects */
+
+.hero-right::before,
+.hero-right::after{
+ content:"";
+ position:absolute;
+ border-radius:50%;
+ filter:blur(1px);
+ z-index:2;
+ animation:float 6s ease-in-out infinite;
+}
+
+.hero-right::before{
+ width:120px;
+ height:120px;
+ background:rgba(181,52,95,.18);
+ top:80px;
+ right:40px;
+}
+
+.hero-right::after{
+ width:80px;
+ height:80px;
+ background:rgba(168,127,63,.25);
+ bottom:120px;
+ left:30px;
+ animation-delay:2s;
+}
+
+
+@keyframes float{
+
+0%,100%{
+ transform:translateY(0px);
+}
+
+50%{
+ transform:translateY(-25px);
+}
+
+}
+
+
+
+/* hero cinematic */
+
+.hero-right img{
+
+transform:scale(1.05);
+transition:transform 1.2s ease;
+
+}
+
+
+.hero:hover .hero-right img{
+
+transform:scale(1.12);
+
+}
+
+
+
+/* glass booking card */
+
+.hero-tag{
+
+backdrop-filter:blur(15px);
+
+background:rgba(250,247,243,.72);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,.12);
+
+border-radius:18px;
+
+}
+
+
+
+/* premium buttons */
+
+.btn-fill{
+
+position:relative;
+overflow:hidden;
+border-radius:50px;
+transition:.4s;
+
+}
+
+
+.btn-fill::before{
+
+content:"";
+position:absolute;
+left:-100%;
+top:0;
+width:100%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.35),
+transparent
+);
+
+transition:.5s;
+
+}
+
+
+.btn-fill:hover::before{
+
+left:100%;
+
+}
+
+
+.btn-fill:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 15px 30px rgba(125,31,64,.25);
+
+}
+
+
+
+/* section reveal */
+
+.section,
+.hero-left,
+.hero-right{
+
+animation:appear 1s ease both;
+
+}
+
+
+@keyframes appear{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:none;
+
+}
+
+}
+
+
+
+/* service luxury hover */
+
+.service-row{
+
+border-radius:18px;
+
+padding-left:20px;
+padding-right:20px;
+
+transition:.35s;
+
+}
+
+
+.service-row:hover{
+
+background:
+linear-gradient(
+90deg,
+rgba(181,52,95,.08),
+transparent
+);
+
+transform:translateX(10px);
+
+}
+
+
+
+/* gallery upgrade */
+
+.gal-grid img{
+
+transition:
+transform .7s ease,
+filter .5s;
+
+}
+
+
+.gal-grid img:hover{
+
+transform:
+scale(1.08);
+
+filter:
+brightness(1.05)
+saturate(1.1);
+
+z-index:5;
+
+}
+
+
+
+/* contact premium */
+
+.contact-grid{
+
+border-radius:25px;
+
+overflow:hidden;
+
+box-shadow:
+0 30px 80px rgba(0,0,0,.08);
+
+}
+
+
+.contact-form input{
+
+transition:.3s;
+
+}
+
+
+.contact-form input:focus{
+
+transform:translateX(5px);
+
+}
+
+
+
+/* floating petals */
+
+body::before{
+
+content:"✦  ✧  ✦";
+
+position:fixed;
+
+top:20%;
+right:5%;
+
+font-size:80px;
+
+color:rgba(181,52,95,.08);
+
+animation:rotatePetal 12s linear infinite;
+
+pointer-events:none;
+
+}
+
+
+@keyframes rotatePetal{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+
+/* mobile polish */
+
+@media(max-width:680px){
+
+
+.hero-left h1{
+
+font-size:3rem;
+
+}
+
+
+.hero-tag{
+
+left:20px;
+right:20px;
+
+}
+
+
+.service-row:hover{
+
+transform:none;
+
+}
+
+
+.contact-grid{
+
+border-radius:15px;
+
+}
+
+
+}
   html{scroll-behavior:smooth;}
   body{
     font-family:'Inter',sans-serif;
