@@ -547,11 +547,9 @@ hero.style.transform="none";
 
 document.querySelector(".hero-right")?.insertAdjacentHTML(
 "beforeend",
-`<div class="floating-object brush">💄</div>
-<div class="floating-object bottle">✨</div>
-<div class="floating-object beauty-ring"></div>`
+`<div class="floating-object beauty-ring"></div>`
 );
-
+ 
 const obs=new IntersectionObserver((entries)=>{
 entries.forEach(e=>{
 if(e.isIntersecting)e.target.classList.add("reveal");
